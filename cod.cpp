@@ -99,40 +99,40 @@ void criarHeap(int ini, int fim, int *list, int *bigO){
   }
   list[ini] = aux;
 }
+
+//countingsort
 void countingsort(int len, int *list, int *bigO){
   int output[10];
   int count[10];
   int max = list[0];
 
-  // Find the largest element of the array
   for (int i = 1; i < len; i++) {
     if (list[i] > max)
       max = list[i];
   }
 
-  // Initialize count array with all zeros.
+
   for (int i = 0; i <= max; ++i) {
     count[i] = 0;
   }
 
-  // Store the count of each element
+
   for (int i = 0; i < len; i++) {
     count[list[i]]++;
   }
 
-  // Store the cummulative count of each array
+
   for (int i = 1; i <= max; i++) {
     count[i] += count[i - 1];
   }
 
-  // Find the index of each element of the original array in count array, and
-  // place the elements in output array
+
   for (int i = len - 1; i >= 0; i--) {
     output[count[list[i]] - 1] = list[i];
     count[list[i]]--;
   }
 
-  // Copy the sorted elements into original array
+  
   for (int i = 0; i < len; i++) {
     list[i] = output[i];
   }
